@@ -9,17 +9,19 @@
   <style>
     html, body {
       font-family: 'Inter', 'Segoe UI', 'Fira Sans', 'Roboto', 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
-      background: #101014;
-      color: #f8f8fa;
+      background: #0a0a0d;
+      color: #f5f5ff;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      font-weight: 500;
+      font-weight: 400;
+      font-size: 15px;
+      letter-spacing: -0.01em;
     }
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 4px; }
     ::-webkit-scrollbar-track { background: transparent; }
     header {
-      background: #18181b;
+      background: #101014;
       border-bottom: 1px solid #27272a;
       box-shadow: 0 1px 0 0 #27272a;
     }
@@ -29,30 +31,32 @@
       box-shadow: none !important;
       position: relative;
       border: none;
-      color: #a1a1aa;
+      color: #b3b3c6;
       font-weight: 500;
-      padding: 0.5rem 1.25rem;
-      font-size: 1rem;
+      padding: 0.4rem 1rem;
+      font-size: 0.97rem;
       transition: color 0.2s;
+      letter-spacing: -0.01em;
     }
     .tab-btn.active {
-      color: #a78bfa !important;
+      color: #c7aaff !important;
       font-weight: 600;
     }
     .tab-btn::after {
       content: "";
       display: block;
-      height: 3px;
+      height: 2px;
       width: 0;
-      background: linear-gradient(90deg, #a78bfa 0%, #6366f1 100%);
+      background: linear-gradient(90deg, #a78bfa 0%, #7c3aed 100%);
       position: absolute;
       left: 0;
-      bottom: -6px;
+      bottom: -4px;
       transition: width 0.3s cubic-bezier(.4,0,.2,1);
       border-radius: 2px;
     }
     .tab-btn.active::after {
       width: 100%;
+      background: linear-gradient(90deg, #a78bfa 0%, #7c3aed 100%);
       animation: underline-grow 0.4s cubic-bezier(.4,0,.2,1);
     }
     @keyframes underline-grow {
@@ -63,7 +67,7 @@
       color: #c4b5fd !important;
     }
     aside {
-      background: #18181b;
+      background: #101014;
       border-right: 1px solid #27272a;
       min-width: 240px;
       padding-top: 2rem;
@@ -126,7 +130,7 @@
       }
     }
     main {
-      background: #18181b;
+      background: #101014;
       padding: 2rem 2.5rem;
       min-height: 100vh;
     }
@@ -231,7 +235,7 @@
   <div class="container" style="max-width: 1200px; margin: 0 auto; padding-left: 5vw; padding-right: 5vw;">
   <header class="flex flex-col px-6 py-3 border-b border-gray-800">
     <div class="mb-1">
-      <span class="font-bold text-2xl tracking-tight text-violet-300">Luasec Docs</span>
+  <span class="font-bold text-2xl tracking-tight text-white">Luasec Docs</span>
     </div>
     <div class="flex items-center w-full">
       <nav id="main-tabs" class="hidden md:flex gap-2 border-b-0 mr-6">
@@ -280,7 +284,7 @@
       <div class="flex-1"></div>
       <footer class="px-4 pb-4 text-xs text-gray-500">© 2025 Luasec</footer>
     </aside>
-    <div id="sidebar-drawer" class="sidebar-drawer md:hidden flex flex-col pt-8 px-4 fixed top-0 left-0 h-full z-50 bg-gray-900 border-r border-gray-800">
+  <div id="sidebar-drawer" class="sidebar-drawer md:hidden flex flex-col pt-8 px-4 fixed top-0 left-0 h-full z-50" style="background:#101014; border-right:1px solid #27272a;">
       <button id="close-sidebar" class="mb-4 text-gray-400 hover:text-indigo-400 self-end p-2 rounded focus:outline-none" aria-label="Close menu">
         <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
@@ -298,57 +302,127 @@
     <div id="sidebar-backdrop" class="sidebar-backdrop hidden md:hidden"></div>
 
     <main class="flex-1 overflow-y-auto relative">
-      <div id="content-welcome" class="content-pane">
-        <p class="mb-2 text-gray-300 text-lg">Luasec is a modern, secure backend and dashboard solution for Lua-based bots and scripts. This documentation will guide you through setup, usage, integrations, and API reference.</p>
-        <ul class="pl-4 list-disc text-gray-400 text-base">
-          <li>Explore the backend architecture</li>
-          <li>Set up your dashboard</li>
-          <li>Integrate with your bot</li>
-          <li>Access API endpoints with ease</li>
-        </ul>
+      <!-- Desktop: show one content pane at a time -->
+      <div class="hidden md:block">
+        <div id="content-welcome" class="content-pane">
+          <p class="mb-2 text-gray-300 text-lg">Luasec is a modern, secure backend and dashboard solution for Lua-based bots and scripts. This documentation will guide you through setup, usage, integrations, and API reference.</p>
+          <ul class="pl-4 list-disc text-gray-400 text-base">
+            <li>Explore the backend architecture</li>
+            <li>Set up your dashboard</li>
+            <li>Integrate with your bot</li>
+            <li>Access API endpoints with ease</li>
+          </ul>
+        </div>
+        <div id="content-backend" class="content-pane hidden">
+          <h2 class="text-2xl font-semibold mb-2 text-indigo-300">About the Backend</h2>
+          <p class="text-gray-300">Luasec's backend is built for scalability and security, handling authentication, keys, and user management seamlessly. It’s designed to work with Lua and popular frameworks.</p>
+        </div>
+        <div id="content-support" class="content-pane hidden">
+          <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Support</h2>
+          <p class="text-gray-300">For help, reach out via <a href="#" class="text-indigo-400 underline">GitHub Issues</a> or join our <a href="#" class="text-indigo-400 underline">Discord server</a>. Documentation, FAQs, and community support are available.</p>
+        </div>
+        <div id="content-dashboard" class="content-pane hidden">
+          <h2 class="text-2xl font-semibold mb-2 text-indigo-300">About the Dashboard</h2>
+          <p class="text-gray-300">The dashboard provides a clean UI for managing scripts, keys, and bot configurations. Track usage, view analytics, and customize bot settings easily.</p>
+        </div>
+        <div id="content-bot" class="content-pane hidden">
+          <h2 class="text-2xl font-semibold mb-2 text-indigo-300">About the Bot</h2>
+          <p class="text-gray-300">Integrate Luasec bot features with your Lua environment. Automate script distribution, manage keys, and connect with external services securely.</p>
+        </div>
+        <div id="content-dashboard-setup" class="content-pane hidden">
+          <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Dashboard Setup</h2>
+          <ol class="list-decimal pl-5 text-gray-300">
+            <li>Register your account</li>
+            <li>Configure your project settings</li>
+            <li>Connect your bot</li>
+            <li>Manage keys and scripts</li>
+          </ol>
+        </div>
+        <div id="content-using-bot" class="content-pane hidden">
+          <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Using the Bot</h2>
+          <p class="text-gray-300">Install and configure your bot using our step-by-step guides. Enable advanced features and automate tasks for your Lua projects.</p>
+        </div>
+        <div id="content-global-vars" class="content-pane hidden">
+          <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Global Variables</h2>
+          <p class="text-gray-300">Integrate and manage global variables for scripts and bots. Refer to our API for supported global parameters and usage guidelines.</p>
+        </div>
+        <div id="content-script-loader" class="content-pane hidden">
+          <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Get Script Loader</h2>
+          <pre class="bg-gray-900 rounded p-4 text-sm text-gray-200 border border-gray-800">GET /api/script-loader?key=YOUR_KEY</pre>
+          <p class="text-gray-300">Returns the script loader for your bot. Requires a valid key. Response includes loader code and usage info.</p>
+        </div>
+        <div id="content-key-info" class="content-pane hidden">
+          <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Get Key Info</h2>
+          <pre class="bg-gray-900 rounded p-4 text-sm text-gray-200 border border-gray-800">GET /api/key-info?key=YOUR_KEY</pre>
+          <p class="text-gray-300">Fetches key status, expiry, and usage metadata. Useful for managing bot access and permissions.</p>
+        </div>
       </div>
-      <div id="content-backend" class="content-pane hidden">
-        <h2 class="text-2xl font-semibold mb-2 text-indigo-300">About the Backend</h2>
-        <p class="text-gray-300">Luasec's backend is built for scalability and security, handling authentication, keys, and user management seamlessly. It’s designed to work with Lua and popular frameworks.</p>
-      </div>
-      <div id="content-support" class="content-pane hidden">
-        <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Support</h2>
-        <p class="text-gray-300">For help, reach out via <a href="#" class="text-indigo-400 underline">GitHub Issues</a> or join our <a href="#" class="text-indigo-400 underline">Discord server</a>. Documentation, FAQs, and community support are available.</p>
-      </div>
-      <div id="content-dashboard" class="content-pane hidden">
-        <h2 class="text-2xl font-semibold mb-2 text-indigo-300">About the Dashboard</h2>
-        <p class="text-gray-300">The dashboard provides a clean UI for managing scripts, keys, and bot configurations. Track usage, view analytics, and customize bot settings easily.</p>
-      </div>
-      <div id="content-bot" class="content-pane hidden">
-        <h2 class="text-2xl font-semibold mb-2 text-indigo-300">About the Bot</h2>
-        <p class="text-gray-300">Integrate Luasec bot features with your Lua environment. Automate script distribution, manage keys, and connect with external services securely.</p>
-      </div>
-      <div id="content-dashboard-setup" class="content-pane hidden">
-        <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Dashboard Setup</h2>
-        <ol class="list-decimal pl-5 text-gray-300">
-          <li>Register your account</li>
-          <li>Configure your project settings</li>
-          <li>Connect your bot</li>
-          <li>Manage keys and scripts</li>
-        </ol>
-      </div>
-      <div id="content-using-bot" class="content-pane hidden">
-        <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Using the Bot</h2>
-        <p class="text-gray-300">Install and configure your bot using our step-by-step guides. Enable advanced features and automate tasks for your Lua projects.</p>
-      </div>
-      <div id="content-global-vars" class="content-pane hidden">
-        <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Global Variables</h2>
-        <p class="text-gray-300">Integrate and manage global variables for scripts and bots. Refer to our API for supported global parameters and usage guidelines.</p>
-      </div>
-      <div id="content-script-loader" class="content-pane hidden">
-        <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Get Script Loader</h2>
-        <pre class="bg-gray-900 rounded p-4 text-sm text-gray-200 border border-gray-800">GET /api/script-loader?key=YOUR_KEY</pre>
-        <p class="text-gray-300">Returns the script loader for your bot. Requires a valid key. Response includes loader code and usage info.</p>
-      </div>
-      <div id="content-key-info" class="content-pane hidden">
-        <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Get Key Info</h2>
-        <pre class="bg-gray-900 rounded p-4 text-sm text-gray-200 border border-gray-800">GET /api/key-info?key=YOUR_KEY</pre>
-        <p class="text-gray-300">Fetches key status, expiry, and usage metadata. Useful for managing bot access and permissions.</p>
+      <!-- Mobile: show all subtab content stacked for each main tab -->
+      <div class="block md:hidden">
+        <!-- Overview tab: all subtabs stacked -->
+        <section id="mobile-overview-content">
+          <div class="mb-6">
+            <p class="mb-2 text-gray-300 text-lg">Luasec is a modern, secure backend and dashboard solution for Lua-based bots and scripts. This documentation will guide you through setup, usage, integrations, and API reference.</p>
+            <ul class="pl-4 list-disc text-gray-400 text-base">
+              <li>Explore the backend architecture</li>
+              <li>Set up your dashboard</li>
+              <li>Integrate with your bot</li>
+              <li>Access API endpoints with ease</li>
+            </ul>
+          </div>
+          <div class="mb-6">
+            <h2 class="text-2xl font-semibold mb-2 text-indigo-300">About the Backend</h2>
+            <p class="text-gray-300">Luasec's backend is built for scalability and security, handling authentication, keys, and user management seamlessly. It’s designed to work with Lua and popular frameworks.</p>
+          </div>
+          <div class="mb-6">
+            <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Support</h2>
+            <p class="text-gray-300">For help, reach out via <a href="#" class="text-indigo-400 underline">GitHub Issues</a> or join our <a href="#" class="text-indigo-400 underline">Discord server</a>. Documentation, FAQs, and community support are available.</p>
+          </div>
+          <div class="mb-6">
+            <h2 class="text-2xl font-semibold mb-2 text-indigo-300">About the Dashboard</h2>
+            <p class="text-gray-300">The dashboard provides a clean UI for managing scripts, keys, and bot configurations. Track usage, view analytics, and customize bot settings easily.</p>
+          </div>
+          <div class="mb-6">
+            <h2 class="text-2xl font-semibold mb-2 text-indigo-300">About the Bot</h2>
+            <p class="text-gray-300">Integrate Luasec bot features with your Lua environment. Automate script distribution, manage keys, and connect with external services securely.</p>
+          </div>
+        </section>
+        <!-- Get Started tab: all subtabs stacked -->
+        <section id="mobile-get-started-content" class="hidden">
+          <div class="mb-6">
+            <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Dashboard Setup</h2>
+            <ol class="list-decimal pl-5 text-gray-300">
+              <li>Register your account</li>
+              <li>Configure your project settings</li>
+              <li>Connect your bot</li>
+              <li>Manage keys and scripts</li>
+            </ol>
+          </div>
+          <div class="mb-6">
+            <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Using the Bot</h2>
+            <p class="text-gray-300">Install and configure your bot using our step-by-step guides. Enable advanced features and automate tasks for your Lua projects.</p>
+          </div>
+        </section>
+        <!-- Integrations tab: all subtabs stacked -->
+        <section id="mobile-integrations-content" class="hidden">
+          <div class="mb-6">
+            <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Global Variables</h2>
+            <p class="text-gray-300">Integrate and manage global variables for scripts and bots. Refer to our API for supported global parameters and usage guidelines.</p>
+          </div>
+        </section>
+        <!-- API Reference tab: all subtabs stacked -->
+        <section id="mobile-api-reference-content" class="hidden">
+          <div class="mb-6">
+            <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Get Script Loader</h2>
+            <pre class="bg-gray-900 rounded p-4 text-sm text-gray-200 border border-gray-800">GET /api/script-loader?key=YOUR_KEY</pre>
+            <p class="text-gray-300">Returns the script loader for your bot. Requires a valid key. Response includes loader code and usage info.</p>
+          </div>
+          <div class="mb-6">
+            <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Get Key Info</h2>
+            <pre class="bg-gray-900 rounded p-4 text-sm text-gray-200 border border-gray-800">GET /api/key-info?key=YOUR_KEY</pre>
+            <p class="text-gray-300">Fetches key status, expiry, and usage metadata. Useful for managing bot access and permissions.</p>
+          </div>
+        </section>
       </div>
     </main>
   </div>
@@ -435,6 +509,41 @@
       });
     });
     showTab('overview');
+
+    // Mobile: show stacked content for selected main tab only
+    function showMobileTab(tabName) {
+      const mobileSections = [
+        'overview',
+        'get-started',
+        'integrations',
+        'api-reference'
+      ];
+      mobileSections.forEach(name => {
+        const el = document.getElementById('mobile-' + name + '-content');
+        if (el) el.classList.add('hidden');
+      });
+      const activeEl = document.getElementById('mobile-' + tabName + '-content');
+      if (activeEl) activeEl.classList.remove('hidden');
+    }
+    // On mobile, also switch stacked content when main tab is selected
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        if (window.innerWidth < 768) {
+          showMobileTab(tab.dataset.tab);
+        }
+      });
+    });
+    drawerTabBtns.forEach(tab => {
+      tab.addEventListener('click', () => {
+        if (window.innerWidth < 768) {
+          showMobileTab(tab.dataset.tab);
+        }
+      });
+    });
+    // Show overview by default on mobile
+    if (window.innerWidth < 768) {
+      showMobileTab('overview');
+    }
   </script>
 </div>
 </body>
