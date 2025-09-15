@@ -8,9 +8,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     html, body {
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
-      background: #18181b;
-      color: #e5e7eb;
+      font-family: 'Inter', 'Segoe UI', 'Fira Sans', 'Roboto', 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+      background: #101014;
+      color: #f8f8fa;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-weight: 500;
     }
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 4px; }
@@ -101,9 +104,9 @@
         transition: transform 0.3s;
         position: fixed;
         top: 0;
-        left: 0;
-        height: 100vh;
-        z-index: 50;
+      footer {
+        color: #444452;
+      }
         width: 80vw;
         max-width: 320px;
         background: #1e293b;
@@ -224,7 +227,8 @@
     }
   </style>
 </head>
-<body class="bg-[#18181b] text-gray-100 min-h-screen flex flex-col transition-colors duration-300">
+<body class="bg-[#101014] text-gray-100 min-h-screen flex flex-col transition-colors duration-300">
+  <div class="container" style="max-width: 1200px; margin: 0 auto; padding-left: 5vw; padding-right: 5vw;">
   <header class="flex flex-col px-6 py-3 border-b border-gray-800">
     <div class="mb-1">
       <span class="font-bold text-2xl tracking-tight text-violet-300">Luasec Docs</span>
@@ -292,26 +296,7 @@
       <footer class="pb-4 text-xs text-gray-500">© 2025 Luasec</footer>
     </div>
     <div id="sidebar-backdrop" class="sidebar-backdrop hidden md:hidden"></div>
-    <div id="mobile-subtabs-bar" class="md:hidden px-4 pt-2 pb-2">
-      <div id="mobile-subtabs-overview" class="subtabs flex gap-2">
-        <button class="subtab-btn active text-indigo-400 font-medium px-2 py-1 rounded transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none text-xs" data-subtab="welcome">Welcome to luasec</button>
-        <button class="subtab-btn text-gray-200 font-medium px-2 py-1 rounded transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none text-xs" data-subtab="backend">About the backend</button>
-        <button class="subtab-btn text-gray-200 font-medium px-2 py-1 rounded transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none text-xs" data-subtab="support">Support</button>
-        <button class="subtab-btn text-gray-200 font-medium px-2 py-1 rounded transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none text-xs" data-subtab="dashboard">About the dashboard</button>
-        <button class="subtab-btn text-gray-200 font-medium px-2 py-1 rounded transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none text-xs" data-subtab="bot">About the bot</button>
-      </div>
-      <div id="mobile-subtabs-get-started" class="subtabs flex gap-2 hidden">
-        <button class="subtab-btn active text-indigo-400 font-medium px-2 py-1 rounded transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none text-xs" data-subtab="dashboard-setup">Dashboard setup</button>
-        <button class="subtab-btn text-gray-200 font-medium px-2 py-1 rounded transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none text-xs" data-subtab="using-bot">Using the bot</button>
-      </div>
-      <div id="mobile-subtabs-integrations" class="subtabs flex gap-2 hidden">
-        <button class="subtab-btn active text-indigo-400 font-medium px-2 py-1 rounded transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none text-xs" data-subtab="global-vars">Global Variables</button>
-      </div>
-      <div id="mobile-subtabs-api-reference" class="subtabs flex gap-2 hidden">
-        <button class="subtab-btn active text-indigo-400 font-medium px-2 py-1 rounded transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none text-xs" data-subtab="script-loader">Get Script Loader</button>
-        <button class="subtab-btn text-gray-200 font-medium px-2 py-1 rounded transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none text-xs" data-subtab="key-info">Get Key Info</button>
-      </div>
-    </div>
+
     <main class="flex-1 overflow-y-auto relative">
       <div id="content-welcome" class="content-pane">
         <p class="mb-2 text-gray-300 text-lg">Luasec is a modern, secure backend and dashboard solution for Lua-based bots and scripts. This documentation will guide you through setup, usage, integrations, and API reference.</p>
@@ -379,9 +364,7 @@
     const mobileTabs = document.getElementById('mobile-tabs');
     const drawerSubtabs = sidebarDrawer.querySelectorAll('.subtabs');
     const drawerSubtabBtns = sidebarDrawer.querySelectorAll('.subtab-btn');
-    const mobileSubtabsBar = document.getElementById('mobile-subtabs-bar');
-    const mobileSubtabs = mobileSubtabsBar ? mobileSubtabsBar.querySelectorAll('.subtabs') : [];
-    const mobileSubtabBtns = mobileSubtabsBar ? mobileSubtabsBar.querySelectorAll('.subtab-btn') : [];
+  // Mobile subtabs removed
     const drawerMainTabs = document.getElementById('drawer-main-tabs');
     const drawerTabBtns = drawerMainTabs ? drawerMainTabs.querySelectorAll('.tab-btn') : [];
     function showTab(tabName) {
@@ -394,16 +377,7 @@
       drawerTabBtns.forEach(t => t.classList.remove('active', 'text-indigo-400', 'font-semibold', 'bg-gray-700'));
       const drawerTabBtn = drawerMainTabs?.querySelector('.tab-btn[data-tab="' + tabName + '"]');
       if (drawerTabBtn) drawerTabBtn.classList.add('active', 'text-indigo-400', 'font-semibold', 'bg-gray-700');
-      // --- Only show the mobile subtabs for the active main tab ---
-      mobileSubtabs.forEach(st => st.classList.add('hidden'));
-      const mobileSubtabBar = document.getElementById('mobile-subtabs-' + tabName);
-      if (mobileSubtabBar) mobileSubtabBar.classList.remove('hidden');
-      const firstMobileSubtab = mobileSubtabBar?.querySelector('.subtab-btn');
-      if (firstMobileSubtab) {
-        showSubtab(firstMobileSubtab.dataset.subtab);
-        mobileSubtabBar.querySelectorAll('.subtab-btn').forEach(b => b.classList.remove('active', 'text-indigo-400', 'font-medium', 'bg-gray-700'));
-        firstMobileSubtab.classList.add('active', 'text-indigo-400', 'font-medium', 'bg-gray-700');
-      }
+      // Mobile subtabs removed
       drawerSubtabs.forEach(st => st.classList.add('hidden'));
       const drawerSubtab = document.getElementById('drawer-subtabs-' + tabName);
       if (drawerSubtab) drawerSubtab.classList.remove('hidden');
@@ -438,19 +412,7 @@
         tab.classList.add('active', 'text-indigo-400', 'font-semibold', 'bg-gray-700');
       });
     });
-    mobileSubtabBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        // Hide all mobile subtabs containers
-        mobileSubtabs.forEach(st => st.classList.add('hidden'));
-        // Show only the parent subtabs container of the clicked button
-        const parentSubtabs = btn.closest('.subtabs');
-        if (parentSubtabs) parentSubtabs.classList.remove('hidden');
-        showSubtab(btn.dataset.subtab);
-        // Remove active from all, add to clicked
-        mobileSubtabBtns.forEach(b => b.classList.remove('active', 'text-indigo-400', 'font-medium', 'bg-gray-700'));
-        btn.classList.add('active', 'text-indigo-400', 'font-medium', 'bg-gray-700');
-      });
-    });
+    // Mobile subtabs removed
     mobileMenuBtn?.addEventListener('click', () => {
       sidebarDrawer.classList.add('open');
       sidebarBackdrop.classList.remove('hidden');
@@ -474,5 +436,6 @@
     });
     showTab('overview');
   </script>
+</div>
 </body>
 </html>
