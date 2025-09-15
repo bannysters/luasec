@@ -291,7 +291,7 @@
     </div>
     <div id="sidebar-backdrop" class="sidebar-backdrop hidden md:hidden"></div>
     <div id="mobile-subtabs-bar" class="md:hidden px-4 pt-2 pb-2">
-      <div id="mobile-subtabs-overview" class="subtabs">
+      <div id="mobile-subtabs-overview" class="subtabs flex gap-2">
         <button class="subtab-btn active text-indigo-400 font-medium px-2 py-1 rounded transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none text-xs" data-subtab="welcome">Welcome to luasec</button>
         <button class="subtab-btn text-gray-200 font-medium px-2 py-1 rounded transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none text-xs" data-subtab="backend">About the backend</button>
         <button class="subtab-btn text-gray-200 font-medium px-2 py-1 rounded transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none text-xs" data-subtab="support">Support</button>
@@ -393,6 +393,7 @@
       drawerTabBtns.forEach(t => t.classList.remove('active', 'text-indigo-400', 'font-semibold', 'bg-gray-700'));
       const drawerTabBtn = drawerMainTabs?.querySelector('.tab-btn[data-tab="' + tabName + '"]');
       if (drawerTabBtn) drawerTabBtn.classList.add('active', 'text-indigo-400', 'font-semibold', 'bg-gray-700');
+      // --- Only show the mobile subtabs for the active main tab ---
       mobileSubtabs.forEach(st => st.classList.add('hidden'));
       const mobileSubtabBar = document.getElementById('mobile-subtabs-' + tabName);
       if (mobileSubtabBar) mobileSubtabBar.classList.remove('hidden');
