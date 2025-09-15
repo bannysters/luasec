@@ -188,7 +188,7 @@
     h1,
     h2 {
       color: #fafafa;
-      font-family: 'Merriweather', Georgia, 'Times New Roman', Times, serif;
+      font-family: 'Inter', 'Segoe UI', 'Fira Sans', 'Roboto', 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
       font-weight: 700;
       margin-bottom: 0.5rem;
       letter-spacing: -0.01em;
@@ -306,7 +306,17 @@
 <body class="bg-[#101014] text-gray-100 min-h-screen flex flex-col transition-colors duration-300">
   <div class="container" style="max-width: 1200px; margin: 0 auto; padding-left: 2.5vw; padding-right: 2.5vw;">
     <header class="flex flex-col px-3 py-2 border-b border-gray-800">
-      <div class="mb-1">
+      <div class="flex items-center w-full md:hidden mb-1">
+        <button id="mobile-menu-btn"
+          class="md:hidden mr-2 text-indigo-400 p-2 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          aria-label="Open menu">
+          <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+        <span class="font-bold text-2xl tracking-tight text-white">Luasec Docs</span>
+      </div>
+      <div class="hidden md:flex mb-1">
         <span class="font-bold text-2xl tracking-tight text-white">Luasec Docs</span>
       </div>
       <div class="flex items-center w-full">
@@ -329,21 +339,17 @@
           <a href="#" class="text-sm text-gray-400 hover:text-violet-400 font-medium transition-colors">GitHub</a>
           <a href="#" class="text-sm text-gray-400 hover:text-violet-400 font-medium transition-colors">Support</a>
         </nav>
-        <button id="mobile-menu-btn"
-          class="md:hidden ml-auto text-indigo-400 p-2 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          aria-label="Open menu">
-          <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
+        <!-- mobile menu button moved above for mobile layout -->
       </div>
     </header>
     <div class="flex flex-1 overflow-hidden flex-col md:flex-row relative">
       <aside class="hidden md:flex flex-col min-w-[240px] border-r border-gray-800 pt-8">
         <div id="subtabs-overview" class="subtabs flex flex-col gap-1 px-2">
+          <div class="sidebar-section-title">Info</div>
           <button class="subtab-btn active" data-subtab="welcome">Welcome to luasec</button>
           <button class="subtab-btn" data-subtab="backend">About the backend</button>
           <button class="subtab-btn" data-subtab="support">Support</button>
+          <div class="sidebar-section-title">Core Features</div>
         </div>
         <div class="subtabs flex flex-col gap-1 px-2">
           <button class="subtab-btn" data-subtab="dashboard">About the dashboard</button>
@@ -398,20 +404,118 @@
         <!-- Desktop: show one content pane at a time -->
         <div class="hidden md:block">
           <div id="content-welcome" class="content-pane">
-            <p class="mb-2 text-gray-300 text-lg">Luasec is a modern, secure backend and dashboard solution for
-              Lua-based bots and scripts. This documentation will guide you through setup, usage, integrations, and API
-              reference.</p>
-            <ul class="pl-4 list-disc text-gray-400 text-base">
-              <li>Explore the backend architecture</li>
-              <li>Set up your dashboard</li>
-              <li>Integrate with your bot</li>
-              <li>Access API endpoints with ease</li>
-            </ul>
+            <p class="mb-2 text-gray-300 text-lg">Luasec is a Roblox script authentication and key management service that helps developers securely distribute and manage script access. This documentation covers everything you need to integrate, manage, and automate your script access flow.</p>
+
+            <div class="mt-8">
+              <div class="flex gap-2 mb-4">
+                <button id="overview-dashboard-tab" class="tab-btn active" type="button">Dashboard</button>
+                <button id="overview-bot-tab" class="tab-btn" type="button">Bot</button>
+              </div>
+              <div id="overview-dashboard-pane">
+                <p class="text-gray-300 mb-2">The 9Auth web dashboard is your main interface for managing scripts, keys, and server integrations.</p>
+                <div class="mb-4">
+                  <span class="font-semibold text-white">Features</span>
+                  <ul class="list-disc pl-6 text-gray-300 mt-1">
+                    <li>Sign in with Discord: Secure OAuth-based authentication.</li>
+                    <li>Add Bot to Server: Invite the 9Auth bot to manage access within your community.</li>
+                    <li>Upload Scripts: Add and manage your scripts through a simple UI.</li>
+                    <li>Manage Keys: Create, revoke, or distribute keys to users.</li>
+                    <li>Manage Users: Track who has access, usage stats, and HWID resets.</li>
+                    <li>Webhooks: Connect events (key usage, redemption, etc.) to your own systems.</li>
+                  </ul>
+                </div>
+              </div>
+              <div id="overview-bot-pane" class="hidden">
+                <p class="text-gray-300 mb-2">The 9Auth bot allows both users and admins to manage script access directly from Discord.</p>
+                <div class="mb-2">
+                  <span class="font-semibold text-white">Public Commands</span>
+                  <ul class="list-disc pl-6 text-gray-300 mt-1">
+                    <li><span class="font-mono">/panel [script]</span><br>
+                      Opens a panel with buttons:
+                      <ul class="list-disc pl-6 mt-1">
+                        <li>Get Key: Ad link to claim a 1-day key.</li>
+                        <li>Redeem: Input and redeem a key.</li>
+                        <li>Get Script: Shows loader + key info.</li>
+                        <li>Reset HWID: Resets HWID if eligible.</li>
+                      </ul>
+                    </li>
+                    <li><span class="font-mono">/scripts</span><br>
+                      List user’s active scripts.
+                    </li>
+                  </ul>
+                </div>
+                <div class="mb-4">
+                  <span class="font-semibold text-white">Admin Commands</span>
+                  <ul class="list-disc pl-6 text-gray-300 mt-1">
+                    <li><span class="font-mono">/whitelist [user] [script] [days]</span><br>
+                      Gives script access to user for X days.
+                    </li>
+                    <li><span class="font-mono">/trial [user] [script] [hours]</span><br>
+                      Short-term access similar to whitelist (in hours).
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
           <div id="content-backend" class="content-pane hidden">
-            <h2 class="text-2xl font-semibold mb-2 text-indigo-300">About the Backend</h2>
-            <p class="text-gray-300">Luasec's backend is built for scalability and security, handling authentication,
-              keys, and user management seamlessly. It’s designed to work with Lua and popular frameworks.</p>
+            <h2 class="text-2xl font-semibold mb-2">About the Backend</h2>
+            <h3 class="text-lg font-semibold mt-4 mb-2 text-white">Overview</h3>
+            <p class="text-gray-300 mb-4">
+              The 9Auth backend is built with security, performance, and integrity as top priorities. It is designed to handle all aspects of Roblox script authentication while protecting both developers and users from tampering, leaks, and reverse engineering attempts.<br>
+              Everything is rendered server-side, meaning users never receive raw or vulnerable script logic directly. Instead, they receive secure, obfuscated loaders dynamically generated per request — making it incredibly difficult to intercept or manipulate.
+            </p>
+            <h3 class="text-lg font-semibold mt-4 mb-2 text-white">Key Features</h3>
+            <ul class="list-disc pl-6 text-gray-300 mb-4">
+              <li class="mb-2">
+                <span class="font-semibold text-white">Secure Key and User Data Storage</span><br>
+                All authentication keys, user metadata, and permissions are securely stored using encrypted databases. Sensitive values are never exposed, and data access is strictly controlled by permission layers and key validation logic.
+              </li>
+              <li class="mb-2">
+                <span class="font-semibold text-white">Dynamic Obfuscation & Virtualization</span><br>
+                Each script loader is uniquely obfuscated on-demand:
+                <ul class="list-disc pl-6 mt-1">
+                  <li>Dynamic code obfuscation ensures no two users ever receive the same script.</li>
+                  <li>Virtualization techniques rewrite parts of scripts into secure virtual opcodes.</li>
+                  <li>Internal logic is restructured to resist static and dynamic analysis.</li>
+                </ul>
+                This approach significantly increases difficulty for attackers attempting to reverse engineer or tamper with scripts.
+              </li>
+              <li class="mb-2">
+                <span class="font-semibold text-white">Tamper Protection & Anti-Hooking</span><br>
+                Loaders come with multiple built-in protections:
+                <ul class="list-disc pl-6 mt-1">
+                  <li>Tamper detection: Scripts verify runtime integrity and environment consistency.</li>
+                  <li>Anti-hooking measures: Key Roblox functions are monitored or hardened to detect unauthorized modifications.</li>
+                  <li>Environment fingerprinting: Identifies and responds to suspicious execution contexts.</li>
+                </ul>
+                If any tampering is detected, scripts can immediately self-terminate or refuse to run.
+              </li>
+              <li class="mb-2">
+                <span class="font-semibold text-white">End-to-End Encryption</span><br>
+                Sensitive client data — including user info, keys, and session metadata — is encrypted before transmission using a dynamic, multi-layered encryption system.
+                <ul class="list-disc pl-6 mt-1">
+                  <li>The encryption process uses multiple distinct algorithms, layered onion-style.</li>
+                  <li>This makes every encrypted payload unique, even if the underlying data is identical.</li>
+                </ul>
+                Only sensitive data is encrypted — not the entire script — to maintain performance while ensuring security where it matters most.<br>
+                This advanced system ensures that intercepted traffic reveals nothing useful, and any decryption attempt is met with extreme computational difficulty.
+              </li>
+              <li class="mb-2">
+                <span class="font-semibold text-white">Server-Side Rendering</span><br>
+                Unlike static script distribution platforms, 9Auth renders all loaders server-side at request time:
+                <ul class="list-disc pl-6 mt-1">
+                  <li>Obfuscation, encryption, and logic transformations happen on the fly.</li>
+                  <li>Server logic adapts based on who is requesting, how often, and under what conditions.</li>
+                </ul>
+                This makes it practically impossible to “scrape” or cache meaningful code.
+              </li>
+            </ul>
+            <h3 class="text-lg font-semibold mt-4 mb-2 text-white">Summary</h3>
+            <p class="text-gray-300">
+              9Auth is designed from the ground up to deliver maximum script protection with minimal developer effort. By combining advanced server-side architecture with real-time obfuscation, anti-tamper measures, and secure storage, 9Auth provides a best-in-class solution for authenticating and protecting Roblox scripts.<br>
+              <span class="font-semibold text-white">Your code stays safe. Your users stay verified. Your project stays yours.</span>
+            </p>
           </div>
           <div id="content-support" class="content-pane hidden">
             <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Support</h2>
@@ -430,13 +534,66 @@
               distribution, manage keys, and connect with external services securely.</p>
           </div>
           <div id="content-dashboard-setup" class="content-pane hidden">
-            <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Dashboard Setup</h2>
-            <ol class="list-decimal pl-5 text-gray-300">
-              <li>Register your account</li>
-              <li>Configure your project settings</li>
-              <li>Connect your bot</li>
-              <li>Manage keys and scripts</li>
+            <h2 class="text-2xl font-semibold mb-2">Installation</h2>
+            <h3 class="text-lg font-semibold mt-2 mb-2 text-white">Dashboard Setup</h3>
+            <p class="text-gray-300 mb-4">A step-by-step guide to set up and configure your account and scripts using the 9auth dashboard.</p>
+            <ol class="list-decimal pl-5 text-gray-300 mb-4">
+              <li>Make sure you have a Discord account ready — 9auth uses Discord for authentication.</li>
+              <li>Go to <span class="font-mono">9auth.xyz</span><br>
+                Open your browser and navigate to <span class="underline">https://9auth.xyz</span>. You’ll see a sleek landing page inviting you to log in.
+              </li>
+              <li>Login with Discord<br>
+                Click the <span class="font-semibold">Login with Discord</span> button.<br>
+                In the Discord OAuth prompt, authorize 9auth to access your basic account info.<br>
+                Once authorized, you’ll be redirected back to the 9auth dashboard.
+              </li>
+              <li>Select Your Server<br>
+                On the dashboard homepage, you’ll see a list of Discord servers where you have “Manage Server” permission.<br>
+                Click on the server you want to manage. This loads your server-specific dashboard view.
+              </li>
+              <li>Create a New Script Entry<br>
+                In the server dashboard, click the green “+” button next to your script tabs.<br>
+                A modal will appear prompting you to enter a name for your new script.<br>
+                Type a descriptive name (e.g., <span class="font-mono">myFirstScript</span>) and click <span class="font-semibold">Create</span>.<br>
+                Your new script will appear in the tab list (e.g., “myFirstScript”). Click that tab to open its management panel.
+              </li>
+              <li>Upload Raw Script Contents<br>
+                With your script tab selected, locate the <span class="font-semibold">Raw Contents</span> card.<br>
+                Click <span class="font-semibold">Choose File</span>, select your <span class="font-mono">.lua</span> script file, and then click <span class="font-semibold">Upload</span>.<br>
+                You’ll see a code preview (e.g., <span class="font-mono">print(&quot;test script loaded!&quot;)</span>) once it’s successfully uploaded.
+              </li>
+              <li>Add Keys<br>
+                Click the orange <span class="font-semibold">Add Keys</span> button in the upper-right of the script panel.<br>
+                In the modal, choose the lifetime of all keys (1-90 days), and the number of keys to generate.<br>
+                Click <span class="font-semibold">add</span>.<br>
+                Your new keys will appear under the <span class="font-semibold">Keys</span> table, showing each key and its lifetime.
+              </li>
+              <li>View &amp; Manage Users<br>
+                Scroll to the <span class="font-semibold">Users</span> section to see which Discord users have activated a key.<br>
+                Columns include:
+                <ul class="list-disc pl-6 mt-1">
+                  <li>Key (the key string)</li>
+                  <li>User ID</li>
+                  <li>Username</li>
+                  <li>Usage Count (how many times they ran the script)</li>
+                  <li>Executor (if available)</li>
+                  <li>Lifetime (days)</li>
+                  <li>Expiration (Unix)</li>
+                </ul>
+                Use this table to monitor active users and usage metrics in real time.
+              </li>
+              <li>Configure Server &amp; Script Settings<br>
+                Scroll to <span class="font-semibold">Server &amp; Script Settings</span> at the bottom of the panel.<br>
+                <span class="font-semibold">HWID Reset Timeout (in hours)</span><br>
+                Drag the slider to set how often users can reset their hwid.<br>
+                <span class="font-semibold">Execution Log Webhook</span><br>
+                Paste your Discord webhook URL to receive real-time notifications whenever the script executes.<br>
+                <span class="font-semibold">Crack-Detection Webhook (coming soon)</span><br>
+                Reserved for future functionality; leave blank for now.<br>
+                Click <span class="font-semibold">Update Settings</span> to save all changes.
+              </li>
             </ol>
+            <div class="text-green-400 font-semibold mt-2">✅ You’re all set! Test your script by running it on a client with a valid key, and monitor execution logs via your webhook.</div>
           </div>
           <div id="content-using-bot" class="content-pane hidden">
             <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Using the Bot</h2>
@@ -463,86 +620,8 @@
               permissions.</p>
           </div>
         </div>
-        <!-- Mobile: show all subtab content stacked for each main tab -->
-        <div class="block md:hidden">
-          <!-- Overview tab: all subtabs stacked -->
-          <section id="mobile-overview-content">
-            <div class="mb-6">
-              <p class="mb-2 text-gray-300 text-lg">Luasec is a modern, secure backend and dashboard solution for
-                Lua-based bots and scripts. This documentation will guide you through setup, usage, integrations, and
-                API reference.</p>
-              <ul class="pl-4 list-disc text-gray-400 text-base">
-                <li>Explore the backend architecture</li>
-                <li>Set up your dashboard</li>
-                <li>Integrate with your bot</li>
-                <li>Access API endpoints with ease</li>
-              </ul>
-            </div>
-            <div class="mb-6">
-              <h2 class="text-2xl font-semibold mb-2 text-indigo-300">About the Backend</h2>
-              <p class="text-gray-300">Luasec's backend is built for scalability and security, handling authentication,
-                keys, and user management seamlessly. It’s designed to work with Lua and popular frameworks.</p>
-            </div>
-            <div class="mb-6">
-              <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Support</h2>
-              <p class="text-gray-300">For help, reach out via <a href="#" class="text-indigo-400 underline">GitHub
-                  Issues</a> or join our <a href="#" class="text-indigo-400 underline">Discord server</a>.
-                Documentation, FAQs, and community support are available.</p>
-            </div>
-            <div class="mb-6">
-              <h2 class="text-2xl font-semibold mb-2 text-indigo-300">About the Dashboard</h2>
-              <p class="text-gray-300">The dashboard provides a clean UI for managing scripts, keys, and bot
-                configurations. Track usage, view analytics, and customize bot settings easily.</p>
-            </div>
-            <div class="mb-6">
-              <h2 class="text-2xl font-semibold mb-2 text-indigo-300">About the Bot</h2>
-              <p class="text-gray-300">Integrate Luasec bot features with your Lua environment. Automate script
-                distribution, manage keys, and connect with external services securely.</p>
-            </div>
-          </section>
-          <!-- Get Started tab: all subtabs stacked -->
-          <section id="mobile-get-started-content" class="hidden">
-            <div class="mb-6">
-              <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Dashboard Setup</h2>
-              <ol class="list-decimal pl-5 text-gray-300">
-                <li>Register your account</li>
-                <li>Configure your project settings</li>
-                <li>Connect your bot</li>
-                <li>Manage keys and scripts</li>
-              </ol>
-            </div>
-            <div class="mb-6">
-              <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Using the Bot</h2>
-              <p class="text-gray-300">Install and configure your bot using our step-by-step guides. Enable advanced
-                features and automate tasks for your Lua projects.</p>
-            </div>
-          </section>
-          <!-- Integrations tab: all subtabs stacked -->
-          <section id="mobile-integrations-content" class="hidden">
-            <div class="mb-6">
-              <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Global Variables</h2>
-              <p class="text-gray-300">Integrate and manage global variables for scripts and bots. Refer to our API for
-                supported global parameters and usage guidelines.</p>
-            </div>
-          </section>
-          <!-- API Reference tab: all subtabs stacked -->
-          <section id="mobile-api-reference-content" class="hidden">
-            <div class="mb-6">
-              <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Get Script Loader</h2>
-              <pre
-                class="bg-gray-900 rounded p-4 text-sm text-gray-200 border border-gray-800">GET /api/script-loader?key=YOUR_KEY</pre>
-              <p class="text-gray-300">Returns the script loader for your bot. Requires a valid key. Response includes
-                loader code and usage info.</p>
-            </div>
-            <div class="mb-6">
-              <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Get Key Info</h2>
-              <pre
-                class="bg-gray-900 rounded p-4 text-sm text-gray-200 border border-gray-800">GET /api/key-info?key=YOUR_KEY</pre>
-              <p class="text-gray-300">Fetches key status, expiry, and usage metadata. Useful for managing bot access
-                and permissions.</p>
-            </div>
-          </section>
-        </div>
+        <!-- Mobile: stack all content panes for the selected main tab -->
+        <div id="mobile-stacked-content" class="block md:hidden"></div>
       </main>
     </div>
     <script>
@@ -615,6 +694,11 @@
           showTab(tab.dataset.tab);
           drawerTabBtns.forEach(t => t.classList.remove('active', 'text-indigo-400', 'font-semibold', 'bg-gray-700'));
           tab.classList.add('active', 'text-indigo-400', 'font-semibold', 'bg-gray-700');
+          // On mobile, close the sidebar drawer and backdrop
+          if (window.innerWidth < 768) {
+            sidebarDrawer.classList.remove('open');
+            sidebarBackdrop.classList.add('hidden');
+          }
         });
       });
       // Mobile subtabs removed
@@ -641,39 +725,60 @@
       });
       showTab('overview');
 
-      // Mobile: show stacked content for selected main tab only
-      function showMobileTab(tabName) {
-        const mobileSections = [
-          'overview',
-          'get-started',
-          'integrations',
-          'api-reference'
-        ];
-        mobileSections.forEach(name => {
-          const el = document.getElementById('mobile-' + name + '-content');
-          if (el) el.classList.add('hidden');
+      // Mobile: stack all content panes for the selected main tab
+      const mainTabToContentIds = {
+        'overview': [
+          'content-welcome',
+          'content-backend',
+          'content-support',
+          'content-dashboard',
+          'content-bot',
+        ],
+        'get-started': [
+          'content-dashboard-setup',
+          'content-using-bot',
+        ],
+        'integrations': [
+          'content-global-vars',
+        ],
+        'api-reference': [
+          'content-script-loader',
+          'content-key-info',
+        ],
+      };
+      function renderMobileStacked(tabName) {
+        const container = document.getElementById('mobile-stacked-content');
+        container.innerHTML = '';
+        if (!mainTabToContentIds[tabName]) return;
+        mainTabToContentIds[tabName].forEach(id => {
+          const pane = document.getElementById(id);
+          if (pane) {
+            // Clone the node and remove 'hidden' and 'content-pane' classes
+            const clone = pane.cloneNode(true);
+            clone.classList.remove('hidden');
+            clone.classList.remove('content-pane');
+            container.appendChild(clone);
+          }
         });
-        const activeEl = document.getElementById('mobile-' + tabName + '-content');
-        if (activeEl) activeEl.classList.remove('hidden');
       }
       // On mobile, also switch stacked content when main tab is selected
       tabs.forEach(tab => {
         tab.addEventListener('click', () => {
           if (window.innerWidth < 768) {
-            showMobileTab(tab.dataset.tab);
+            renderMobileStacked(tab.dataset.tab);
           }
         });
       });
       drawerTabBtns.forEach(tab => {
         tab.addEventListener('click', () => {
           if (window.innerWidth < 768) {
-            showMobileTab(tab.dataset.tab);
+            renderMobileStacked(tab.dataset.tab);
           }
         });
       });
       // Show overview by default on mobile
       if (window.innerWidth < 768) {
-        showMobileTab('overview');
+        renderMobileStacked('overview');
       }
     </script>
   </div>
