@@ -232,12 +232,12 @@
   </style>
 </head>
 <body class="bg-[#101014] text-gray-100 min-h-screen flex flex-col transition-colors duration-300">
-  <div class="container" style="max-width: 1200px; margin: 0 auto; padding-left: 5vw; padding-right: 5vw;">
+  <div class="container" style="max-width: 1200px; margin: 0 auto; padding-left: 2.5vw; padding-right: 2.5vw;">
   <header class="flex flex-col px-6 py-3 border-b border-gray-800">
     <div class="mb-1">
   <span class="font-bold text-2xl tracking-tight text-white">Luasec Docs</span>
     </div>
-    <div class="flex items-center w-full">
+    <div class="flex items-center w-full relative">
       <nav id="main-tabs" class="hidden md:flex gap-2 border-b-0 mr-6">
         <button class="tab-btn active text-indigo-400 font-semibold px-4 py-2 rounded-t transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none" data-tab="overview">Overview</button>
         <button class="tab-btn text-gray-300 font-medium px-4 py-2 rounded-t transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none" data-tab="get-started">Get Started</button>
@@ -254,6 +254,8 @@
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
       </button>
+      <!-- Full-width divider under main tabs -->
+      <div class="absolute left-0 right-0 -bottom-2 h-px w-screen bg-[#27272a]" style="z-index:0;"></div>
     </div>
   </header>
   <div class="flex flex-1 overflow-hidden flex-col md:flex-row relative">
