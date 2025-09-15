@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Luasec Documentation</title>
@@ -7,7 +8,8 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    html, body {
+    html,
+    body {
       font-family: 'Inter', 'Segoe UI', 'Fira Sans', 'Roboto', 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
       background: #0a0a0d;
       color: #f5f5ff;
@@ -17,14 +19,26 @@
       font-size: 13px;
       letter-spacing: -0.01em;
     }
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 4px; }
-    ::-webkit-scrollbar-track { background: transparent; }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #27272a;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
     header {
       background: #101014;
       border-bottom: 1px solid #27272a;
       box-shadow: 0 1px 0 0 #27272a;
     }
+
     .tab-btn {
       background: none !important;
       border-radius: 0 !important;
@@ -38,10 +52,12 @@
       transition: color 0.2s;
       letter-spacing: -0.01em;
     }
+
     .tab-btn.active {
       color: #c7aaff !important;
       font-weight: 600;
     }
+
     .tab-btn::after {
       content: "";
       display: block;
@@ -51,27 +67,37 @@
       position: absolute;
       left: 0;
       bottom: -4px;
-      transition: width 0.3s cubic-bezier(.4,0,.2,1);
+      transition: width 0.3s cubic-bezier(.4, 0, .2, 1);
       border-radius: 2px;
     }
+
     .tab-btn.active::after {
       width: 100%;
       background: linear-gradient(90deg, #a78bfa 0%, #7c3aed 100%);
-      animation: underline-grow 0.4s cubic-bezier(.4,0,.2,1);
+      animation: underline-grow 0.4s cubic-bezier(.4, 0, .2, 1);
     }
+
     @keyframes underline-grow {
-      from { width: 0; }
-      to { width: 100%; }
+      from {
+        width: 0;
+      }
+
+      to {
+        width: 100%;
+      }
     }
+
     .tab-btn:hover {
       color: #c4b5fd !important;
     }
+
     aside {
       background: #101014;
       border-right: 1px solid #27272a;
       min-width: 180px;
       padding-top: 1.2rem;
     }
+
     .sidebar-section-title {
       color: #a1a1aa;
       font-size: 0.78rem;
@@ -80,6 +106,7 @@
       letter-spacing: 0.02em;
       text-transform: uppercase;
     }
+
     .subtab-btn {
       background: none !important;
       border-radius: 9999px !important;
@@ -94,60 +121,93 @@
       font-size: 0.92rem;
       transition: color 0.2s, background 0.2s;
     }
+
+    @media (min-width: 768px) {
+      .subtab-btn {
+        font-size: 1.05rem;
+        padding: 0.38rem 1.1rem;
+      }
+    }
+
     .subtab-btn.active {
       background: #27272a !important;
       color: #a78bfa !important;
       font-weight: 600;
     }
+
     .subtab-btn:hover {
       background: #23232a !important;
       color: #c4b5fd !important;
     }
+
     @media (max-width: 768px) {
       .sidebar-drawer {
         transform: translateX(-100%);
         transition: transform 0.3s;
         position: fixed;
         top: 0;
-      footer {
-        color: #444452;
-      }
+        
+        footer {
+          color: #444452;
+        }
+
         width: 80vw;
         max-width: 320px;
         background: #1e293b;
         box-shadow: 2px 0 16px 0 rgb(30 41 59 / 0.20);
       }
+
       .sidebar-drawer.open {
         transform: translateX(0);
       }
+
       .sidebar-backdrop {
         position: fixed;
-        top: 0; left: 0; width: 100vw; height: 100vh;
-        background: rgba(30,41,59,0.5);
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(30, 41, 59, 0.5);
         z-index: 40;
       }
+
       aside {
         display: none !important;
       }
     }
+
     main {
-      background: #101014;
+      background: linear-gradient(180deg, #131317 0%, #101014 100%);
+      border: 1px solid #23232a;
+      border-radius: 10px;
+      box-shadow: 0 2px 16px 0 rgba(20, 20, 30, 0.10), 0 1.5px 0 0 #23232a inset;
       padding: 1.2rem 1.2rem;
       min-height: 100vh;
+      margin-top: 1.2rem;
+      margin-left: 2.5rem;
     }
-    h1, h2 {
+
+    h1,
+    h2 {
       color: #fafafa;
+      font-family: 'Merriweather', Georgia, 'Times New Roman', Times, serif;
       font-weight: 700;
       margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
     }
+
     h1 {
       font-size: 1.5rem;
       margin-top: 0.3rem;
     }
+
     h2 {
       font-size: 1.1rem;
       margin-top: 1rem;
     }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap" rel="stylesheet">
+  <style>
     .on-this-page {
       position: absolute;
       right: 2.5rem;
@@ -161,20 +221,24 @@
       z-index: 10;
       display: none;
     }
+
     @media (min-width: 1200px) {
       .on-this-page {
         display: block;
       }
+
       main {
         margin-right: 240px;
       }
     }
+
     #mobile-subtabs-bar {
       background: none !important;
       border-bottom: none;
       padding-bottom: 0.5rem;
       padding-top: 0.5rem;
     }
+
     #mobile-subtabs-bar .subtabs {
       display: flex;
       gap: 0.5rem;
@@ -183,13 +247,16 @@
       scrollbar-width: thin;
       scrollbar-color: #27272a #18181b;
     }
+
     #mobile-subtabs-bar .subtabs::-webkit-scrollbar {
       height: 6px;
     }
+
     #mobile-subtabs-bar .subtabs::-webkit-scrollbar-thumb {
       background: #27272a;
       border-radius: 3px;
     }
+
     #mobile-subtabs-bar .subtab-btn,
     #mobile-subtabs-bar .subtab-btn.active {
       background: none !important;
@@ -207,13 +274,16 @@
       min-width: 120px;
       flex: 0 0 auto;
     }
+
     #mobile-subtabs-bar .subtab-btn.active {
       color: #a78bfa !important;
       font-weight: 600;
     }
+
     #mobile-subtabs-bar .subtab-btn:hover {
       color: #c4b5fd !important;
     }
+
     #mobile-subtabs-bar .subtab-btn::after {
       content: "";
       display: block;
@@ -223,147 +293,115 @@
       position: absolute;
       left: 0;
       bottom: -6px;
-      transition: width 0.3s cubic-bezier(.4,0,.2,1);
+      transition: width 0.3s cubic-bezier(.4, 0, .2, 1);
       border-radius: 2px;
     }
+
     #mobile-subtabs-bar .subtab-btn.active::after {
       width: 100%;
-      animation: underline-grow 0.4s cubic-bezier(.4,0,.2,1);
+      animation: underline-grow 0.4s cubic-bezier(.4, 0, .2, 1);
     }
   </style>
 </head>
+
 <body class="bg-[#101014] text-gray-100 min-h-screen flex flex-col transition-colors duration-300">
   <div class="container" style="max-width: 1200px; margin: 0 auto; padding-left: 2.5vw; padding-right: 2.5vw;">
-  <header class="flex flex-col px-3 py-2 border-b border-gray-800">
-    <div class="mb-1">
-  <span class="font-bold text-2xl tracking-tight text-white">Luasec Docs</span>
-    </div>
-    <div class="flex items-center w-full">
-      <nav id="main-tabs" class="hidden md:flex gap-2 border-b-0 mr-6">
-        <button class="tab-btn active text-indigo-400 font-semibold px-4 py-2 rounded-t transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none" data-tab="overview">Overview</button>
-        <button class="tab-btn text-gray-300 font-medium px-4 py-2 rounded-t transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none" data-tab="get-started">Get Started</button>
-        <button class="tab-btn text-gray-300 font-medium px-4 py-2 rounded-t transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none" data-tab="integrations">Integrations</button>
-        <button class="tab-btn text-gray-300 font-medium px-4 py-2 rounded-t transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none" data-tab="api-reference">API Reference</button>
-      </nav>
-      <div class="flex-1"></div>
-      <nav class="hidden md:flex items-center gap-4">
-        <a href="#" class="text-sm text-gray-400 hover:text-violet-400 font-medium transition-colors">GitHub</a>
-        <a href="#" class="text-sm text-gray-400 hover:text-violet-400 font-medium transition-colors">Support</a>
-      </nav>
-      <button id="mobile-menu-btn" class="md:hidden ml-auto text-indigo-400 p-2 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500" aria-label="Open menu">
-        <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>
-      </button>
-    </div>
-  </header>
-  <div class="flex flex-1 overflow-hidden flex-col md:flex-row relative">
-    <aside class="hidden md:flex flex-col min-w-[240px] border-r border-gray-800 pt-8">
-      <div id="subtabs-overview" class="subtabs flex flex-col gap-1 px-2">
-        <button class="subtab-btn active" data-subtab="welcome">Welcome to luasec</button>
-        <button class="subtab-btn" data-subtab="backend">About the backend</button>
-        <button class="subtab-btn" data-subtab="support">Support</button>
+    <header class="flex flex-col px-3 py-2 border-b border-gray-800">
+      <div class="mb-1">
+        <span class="font-bold text-2xl tracking-tight text-white">Luasec Docs</span>
       </div>
-      <div class="subtabs flex flex-col gap-1 px-2">
-        <button class="subtab-btn" data-subtab="dashboard">About the dashboard</button>
-        <button class="subtab-btn" data-subtab="bot">About the bot</button>
+      <div class="flex items-center w-full">
+        <nav id="main-tabs" class="hidden md:flex gap-2 border-b-0 mr-6">
+          <button
+            class="tab-btn active text-indigo-400 font-semibold px-4 py-2 rounded-t transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none"
+            data-tab="overview">Overview</button>
+          <button
+            class="tab-btn text-gray-300 font-medium px-4 py-2 rounded-t transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none"
+            data-tab="get-started">Get Started</button>
+          <button
+            class="tab-btn text-gray-300 font-medium px-4 py-2 rounded-t transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none"
+            data-tab="integrations">Integrations</button>
+          <button
+            class="tab-btn text-gray-300 font-medium px-4 py-2 rounded-t transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none"
+            data-tab="api-reference">API Reference</button>
+        </nav>
+        <div class="flex-1"></div>
+        <nav class="hidden md:flex items-center gap-4">
+          <a href="#" class="text-sm text-gray-400 hover:text-violet-400 font-medium transition-colors">GitHub</a>
+          <a href="#" class="text-sm text-gray-400 hover:text-violet-400 font-medium transition-colors">Support</a>
+        </nav>
+        <button id="mobile-menu-btn"
+          class="md:hidden ml-auto text-indigo-400 p-2 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          aria-label="Open menu">
+          <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
       </div>
-      <div id="subtabs-get-started" class="subtabs flex flex-col gap-1 px-2 hidden">
-        <div class="sidebar-section-title">Setup</div>
-        <button class="subtab-btn active" data-subtab="dashboard-setup">Dashboard setup</button>
-        <button class="subtab-btn" data-subtab="using-bot">Using the bot</button>
+    </header>
+    <div class="flex flex-1 overflow-hidden flex-col md:flex-row relative">
+      <aside class="hidden md:flex flex-col min-w-[240px] border-r border-gray-800 pt-8">
+        <div id="subtabs-overview" class="subtabs flex flex-col gap-1 px-2">
+          <button class="subtab-btn active" data-subtab="welcome">Welcome to luasec</button>
+          <button class="subtab-btn" data-subtab="backend">About the backend</button>
+          <button class="subtab-btn" data-subtab="support">Support</button>
+        </div>
+        <div class="subtabs flex flex-col gap-1 px-2">
+          <button class="subtab-btn" data-subtab="dashboard">About the dashboard</button>
+          <button class="subtab-btn" data-subtab="bot">About the bot</button>
+        </div>
+        <div id="subtabs-get-started" class="subtabs flex flex-col gap-1 px-2 hidden">
+          <div class="sidebar-section-title">Setup</div>
+          <button class="subtab-btn active" data-subtab="dashboard-setup">Dashboard setup</button>
+          <button class="subtab-btn" data-subtab="using-bot">Using the bot</button>
+        </div>
+        <div id="subtabs-integrations" class="subtabs flex flex-col gap-1 px-2 hidden">
+          <div class="sidebar-section-title">Integrations</div>
+          <button class="subtab-btn active" data-subtab="global-vars">Global Variables</button>
+        </div>
+        <div id="subtabs-api-reference" class="subtabs flex flex-col gap-1 px-2 hidden">
+          <div class="sidebar-section-title">API</div>
+          <button class="subtab-btn active" data-subtab="script-loader">Get Script Loader</button>
+          <button class="subtab-btn" data-subtab="key-info">Get Key Info</button>
+        </div>
+        <div class="flex-1"></div>
+        <footer class="px-4 pb-4 text-xs text-gray-500">© 2025 Luasec</footer>
+      </aside>
+      <div id="sidebar-drawer" class="sidebar-drawer md:hidden flex flex-col pt-8 px-4 fixed top-0 left-0 h-full z-50"
+        style="background:#101014; border-right:1px solid #27272a;">
+        <button id="close-sidebar"
+          class="mb-4 text-gray-400 hover:text-indigo-400 self-end p-2 rounded focus:outline-none"
+          aria-label="Close menu">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+        <nav id="drawer-main-tabs" class="flex flex-col gap-1 mb-6 border-b border-gray-800">
+          <button
+            class="tab-btn active text-indigo-400 font-semibold px-3 py-2 rounded transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none"
+            data-tab="overview">Overview</button>
+          <button
+            class="tab-btn text-gray-300 font-medium px-3 py-2 rounded transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none"
+            data-tab="get-started">Get Started</button>
+          <button
+            class="tab-btn text-gray-300 font-medium px-3 py-2 rounded transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none"
+            data-tab="integrations">Integrations</button>
+          <button
+            class="tab-btn text-gray-300 font-medium px-3 py-2 rounded transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none"
+            data-tab="api-reference">API Reference</button>
+        </nav>
+        <div class="flex-1"></div>
+        <footer class="pb-4 text-xs text-gray-500">© 2025 Luasec</footer>
       </div>
-      <div id="subtabs-integrations" class="subtabs flex flex-col gap-1 px-2 hidden">
-        <div class="sidebar-section-title">Integrations</div>
-        <button class="subtab-btn active" data-subtab="global-vars">Global Variables</button>
-      </div>
-      <div id="subtabs-api-reference" class="subtabs flex flex-col gap-1 px-2 hidden">
-        <div class="sidebar-section-title">API</div>
-        <button class="subtab-btn active" data-subtab="script-loader">Get Script Loader</button>
-        <button class="subtab-btn" data-subtab="key-info">Get Key Info</button>
-      </div>
-      <div class="flex-1"></div>
-      <footer class="px-4 pb-4 text-xs text-gray-500">© 2025 Luasec</footer>
-    </aside>
-  <div id="sidebar-drawer" class="sidebar-drawer md:hidden flex flex-col pt-8 px-4 fixed top-0 left-0 h-full z-50" style="background:#101014; border-right:1px solid #27272a;">
-      <button id="close-sidebar" class="mb-4 text-gray-400 hover:text-indigo-400 self-end p-2 rounded focus:outline-none" aria-label="Close menu">
-        <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-        </svg>
-      </button>
-      <nav id="drawer-main-tabs" class="flex flex-col gap-1 mb-6 border-b border-gray-800">
-        <button class="tab-btn active text-indigo-400 font-semibold px-3 py-2 rounded transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none" data-tab="overview">Overview</button>
-        <button class="tab-btn text-gray-300 font-medium px-3 py-2 rounded transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none" data-tab="get-started">Get Started</button>
-        <button class="tab-btn text-gray-300 font-medium px-3 py-2 rounded transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none" data-tab="integrations">Integrations</button>
-        <button class="tab-btn text-gray-300 font-medium px-3 py-2 rounded transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none" data-tab="api-reference">API Reference</button>
-      </nav>
-      <div class="flex-1"></div>
-      <footer class="pb-4 text-xs text-gray-500">© 2025 Luasec</footer>
-    </div>
-    <div id="sidebar-backdrop" class="sidebar-backdrop hidden md:hidden"></div>
+      <div id="sidebar-backdrop" class="sidebar-backdrop hidden md:hidden"></div>
 
-    <main class="flex-1 overflow-y-auto relative">
-      <!-- Desktop: show one content pane at a time -->
-      <div class="hidden md:block">
-        <div id="content-welcome" class="content-pane">
-          <p class="mb-2 text-gray-300 text-lg">Luasec is a modern, secure backend and dashboard solution for Lua-based bots and scripts. This documentation will guide you through setup, usage, integrations, and API reference.</p>
-          <ul class="pl-4 list-disc text-gray-400 text-base">
-            <li>Explore the backend architecture</li>
-            <li>Set up your dashboard</li>
-            <li>Integrate with your bot</li>
-            <li>Access API endpoints with ease</li>
-          </ul>
-        </div>
-        <div id="content-backend" class="content-pane hidden">
-          <h2 class="text-2xl font-semibold mb-2 text-indigo-300">About the Backend</h2>
-          <p class="text-gray-300">Luasec's backend is built for scalability and security, handling authentication, keys, and user management seamlessly. It’s designed to work with Lua and popular frameworks.</p>
-        </div>
-        <div id="content-support" class="content-pane hidden">
-          <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Support</h2>
-          <p class="text-gray-300">For help, reach out via <a href="#" class="text-indigo-400 underline">GitHub Issues</a> or join our <a href="#" class="text-indigo-400 underline">Discord server</a>. Documentation, FAQs, and community support are available.</p>
-        </div>
-        <div id="content-dashboard" class="content-pane hidden">
-          <h2 class="text-2xl font-semibold mb-2 text-indigo-300">About the Dashboard</h2>
-          <p class="text-gray-300">The dashboard provides a clean UI for managing scripts, keys, and bot configurations. Track usage, view analytics, and customize bot settings easily.</p>
-        </div>
-        <div id="content-bot" class="content-pane hidden">
-          <h2 class="text-2xl font-semibold mb-2 text-indigo-300">About the Bot</h2>
-          <p class="text-gray-300">Integrate Luasec bot features with your Lua environment. Automate script distribution, manage keys, and connect with external services securely.</p>
-        </div>
-        <div id="content-dashboard-setup" class="content-pane hidden">
-          <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Dashboard Setup</h2>
-          <ol class="list-decimal pl-5 text-gray-300">
-            <li>Register your account</li>
-            <li>Configure your project settings</li>
-            <li>Connect your bot</li>
-            <li>Manage keys and scripts</li>
-          </ol>
-        </div>
-        <div id="content-using-bot" class="content-pane hidden">
-          <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Using the Bot</h2>
-          <p class="text-gray-300">Install and configure your bot using our step-by-step guides. Enable advanced features and automate tasks for your Lua projects.</p>
-        </div>
-        <div id="content-global-vars" class="content-pane hidden">
-          <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Global Variables</h2>
-          <p class="text-gray-300">Integrate and manage global variables for scripts and bots. Refer to our API for supported global parameters and usage guidelines.</p>
-        </div>
-        <div id="content-script-loader" class="content-pane hidden">
-          <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Get Script Loader</h2>
-          <pre class="bg-gray-900 rounded p-4 text-sm text-gray-200 border border-gray-800">GET /api/script-loader?key=YOUR_KEY</pre>
-          <p class="text-gray-300">Returns the script loader for your bot. Requires a valid key. Response includes loader code and usage info.</p>
-        </div>
-        <div id="content-key-info" class="content-pane hidden">
-          <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Get Key Info</h2>
-          <pre class="bg-gray-900 rounded p-4 text-sm text-gray-200 border border-gray-800">GET /api/key-info?key=YOUR_KEY</pre>
-          <p class="text-gray-300">Fetches key status, expiry, and usage metadata. Useful for managing bot access and permissions.</p>
-        </div>
-      </div>
-      <!-- Mobile: show all subtab content stacked for each main tab -->
-      <div class="block md:hidden">
-        <!-- Overview tab: all subtabs stacked -->
-        <section id="mobile-overview-content">
-          <div class="mb-6">
-            <p class="mb-2 text-gray-300 text-lg">Luasec is a modern, secure backend and dashboard solution for Lua-based bots and scripts. This documentation will guide you through setup, usage, integrations, and API reference.</p>
+      <main class="flex-1 overflow-y-auto relative">
+        <!-- Desktop: show one content pane at a time -->
+        <div class="hidden md:block">
+          <div id="content-welcome" class="content-pane">
+            <p class="mb-2 text-gray-300 text-lg">Luasec is a modern, secure backend and dashboard solution for
+              Lua-based bots and scripts. This documentation will guide you through setup, usage, integrations, and API
+              reference.</p>
             <ul class="pl-4 list-disc text-gray-400 text-base">
               <li>Explore the backend architecture</li>
               <li>Set up your dashboard</li>
@@ -371,26 +409,28 @@
               <li>Access API endpoints with ease</li>
             </ul>
           </div>
-          <div class="mb-6">
+          <div id="content-backend" class="content-pane hidden">
             <h2 class="text-2xl font-semibold mb-2 text-indigo-300">About the Backend</h2>
-            <p class="text-gray-300">Luasec's backend is built for scalability and security, handling authentication, keys, and user management seamlessly. It’s designed to work with Lua and popular frameworks.</p>
+            <p class="text-gray-300">Luasec's backend is built for scalability and security, handling authentication,
+              keys, and user management seamlessly. It’s designed to work with Lua and popular frameworks.</p>
           </div>
-          <div class="mb-6">
+          <div id="content-support" class="content-pane hidden">
             <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Support</h2>
-            <p class="text-gray-300">For help, reach out via <a href="#" class="text-indigo-400 underline">GitHub Issues</a> or join our <a href="#" class="text-indigo-400 underline">Discord server</a>. Documentation, FAQs, and community support are available.</p>
+            <p class="text-gray-300">For help, reach out via <a href="#" class="text-indigo-400 underline">GitHub
+                Issues</a> or join our <a href="#" class="text-indigo-400 underline">Discord server</a>. Documentation,
+              FAQs, and community support are available.</p>
           </div>
-          <div class="mb-6">
+          <div id="content-dashboard" class="content-pane hidden">
             <h2 class="text-2xl font-semibold mb-2 text-indigo-300">About the Dashboard</h2>
-            <p class="text-gray-300">The dashboard provides a clean UI for managing scripts, keys, and bot configurations. Track usage, view analytics, and customize bot settings easily.</p>
+            <p class="text-gray-300">The dashboard provides a clean UI for managing scripts, keys, and bot
+              configurations. Track usage, view analytics, and customize bot settings easily.</p>
           </div>
-          <div class="mb-6">
+          <div id="content-bot" class="content-pane hidden">
             <h2 class="text-2xl font-semibold mb-2 text-indigo-300">About the Bot</h2>
-            <p class="text-gray-300">Integrate Luasec bot features with your Lua environment. Automate script distribution, manage keys, and connect with external services securely.</p>
+            <p class="text-gray-300">Integrate Luasec bot features with your Lua environment. Automate script
+              distribution, manage keys, and connect with external services securely.</p>
           </div>
-        </section>
-        <!-- Get Started tab: all subtabs stacked -->
-        <section id="mobile-get-started-content" class="hidden">
-          <div class="mb-6">
+          <div id="content-dashboard-setup" class="content-pane hidden">
             <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Dashboard Setup</h2>
             <ol class="list-decimal pl-5 text-gray-300">
               <li>Register your account</li>
@@ -399,165 +439,245 @@
               <li>Manage keys and scripts</li>
             </ol>
           </div>
-          <div class="mb-6">
+          <div id="content-using-bot" class="content-pane hidden">
             <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Using the Bot</h2>
-            <p class="text-gray-300">Install and configure your bot using our step-by-step guides. Enable advanced features and automate tasks for your Lua projects.</p>
+            <p class="text-gray-300">Install and configure your bot using our step-by-step guides. Enable advanced
+              features and automate tasks for your Lua projects.</p>
           </div>
-        </section>
-        <!-- Integrations tab: all subtabs stacked -->
-        <section id="mobile-integrations-content" class="hidden">
-          <div class="mb-6">
+          <div id="content-global-vars" class="content-pane hidden">
             <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Global Variables</h2>
-            <p class="text-gray-300">Integrate and manage global variables for scripts and bots. Refer to our API for supported global parameters and usage guidelines.</p>
+            <p class="text-gray-300">Integrate and manage global variables for scripts and bots. Refer to our API for
+              supported global parameters and usage guidelines.</p>
           </div>
-        </section>
-        <!-- API Reference tab: all subtabs stacked -->
-        <section id="mobile-api-reference-content" class="hidden">
-          <div class="mb-6">
+          <div id="content-script-loader" class="content-pane hidden">
             <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Get Script Loader</h2>
-            <pre class="bg-gray-900 rounded p-4 text-sm text-gray-200 border border-gray-800">GET /api/script-loader?key=YOUR_KEY</pre>
-            <p class="text-gray-300">Returns the script loader for your bot. Requires a valid key. Response includes loader code and usage info.</p>
+            <pre
+              class="bg-gray-900 rounded p-4 text-sm text-gray-200 border border-gray-800">GET /api/script-loader?key=YOUR_KEY</pre>
+            <p class="text-gray-300">Returns the script loader for your bot. Requires a valid key. Response includes
+              loader code and usage info.</p>
           </div>
-          <div class="mb-6">
+          <div id="content-key-info" class="content-pane hidden">
             <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Get Key Info</h2>
-            <pre class="bg-gray-900 rounded p-4 text-sm text-gray-200 border border-gray-800">GET /api/key-info?key=YOUR_KEY</pre>
-            <p class="text-gray-300">Fetches key status, expiry, and usage metadata. Useful for managing bot access and permissions.</p>
+            <pre
+              class="bg-gray-900 rounded p-4 text-sm text-gray-200 border border-gray-800">GET /api/key-info?key=YOUR_KEY</pre>
+            <p class="text-gray-300">Fetches key status, expiry, and usage metadata. Useful for managing bot access and
+              permissions.</p>
           </div>
-        </section>
-      </div>
-    </main>
-  </div>
-  <script>
-    const tabs = document.querySelectorAll('.tab-btn');
-    const subtabs = document.querySelectorAll('.subtabs');
-    const subtabBtns = document.querySelectorAll('.subtab-btn');
-    const contentPanes = document.querySelectorAll('.content-pane');
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const sidebarDrawer = document.getElementById('sidebar-drawer');
-    const sidebarBackdrop = document.getElementById('sidebar-backdrop');
-    const closeSidebarBtn = document.getElementById('close-sidebar');
-    const mobileTabs = document.getElementById('mobile-tabs');
-    const drawerSubtabs = sidebarDrawer.querySelectorAll('.subtabs');
-    const drawerSubtabBtns = sidebarDrawer.querySelectorAll('.subtab-btn');
-  // Mobile subtabs removed
-    const drawerMainTabs = document.getElementById('drawer-main-tabs');
-    const drawerTabBtns = drawerMainTabs ? drawerMainTabs.querySelectorAll('.tab-btn') : [];
-    function showTab(tabName) {
-      subtabs.forEach(st => st.classList.add('hidden'));
-      tabs.forEach(t => t.classList.remove('active', 'text-indigo-400', 'font-semibold', 'bg-gray-700'));
-      const desktopSubtabs = document.getElementById('subtabs-' + tabName);
-      if (desktopSubtabs) desktopSubtabs.classList.remove('hidden');
-      const tabBtn = document.querySelector('.tab-btn[data-tab="' + tabName + '"]');
-      if (tabBtn) tabBtn.classList.add('active', 'text-indigo-400', 'font-semibold', 'bg-gray-700');
-      drawerTabBtns.forEach(t => t.classList.remove('active', 'text-indigo-400', 'font-semibold', 'bg-gray-700'));
-      const drawerTabBtn = drawerMainTabs?.querySelector('.tab-btn[data-tab="' + tabName + '"]');
-      if (drawerTabBtn) drawerTabBtn.classList.add('active', 'text-indigo-400', 'font-semibold', 'bg-gray-700');
+        </div>
+        <!-- Mobile: show all subtab content stacked for each main tab -->
+        <div class="block md:hidden">
+          <!-- Overview tab: all subtabs stacked -->
+          <section id="mobile-overview-content">
+            <div class="mb-6">
+              <p class="mb-2 text-gray-300 text-lg">Luasec is a modern, secure backend and dashboard solution for
+                Lua-based bots and scripts. This documentation will guide you through setup, usage, integrations, and
+                API reference.</p>
+              <ul class="pl-4 list-disc text-gray-400 text-base">
+                <li>Explore the backend architecture</li>
+                <li>Set up your dashboard</li>
+                <li>Integrate with your bot</li>
+                <li>Access API endpoints with ease</li>
+              </ul>
+            </div>
+            <div class="mb-6">
+              <h2 class="text-2xl font-semibold mb-2 text-indigo-300">About the Backend</h2>
+              <p class="text-gray-300">Luasec's backend is built for scalability and security, handling authentication,
+                keys, and user management seamlessly. It’s designed to work with Lua and popular frameworks.</p>
+            </div>
+            <div class="mb-6">
+              <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Support</h2>
+              <p class="text-gray-300">For help, reach out via <a href="#" class="text-indigo-400 underline">GitHub
+                  Issues</a> or join our <a href="#" class="text-indigo-400 underline">Discord server</a>.
+                Documentation, FAQs, and community support are available.</p>
+            </div>
+            <div class="mb-6">
+              <h2 class="text-2xl font-semibold mb-2 text-indigo-300">About the Dashboard</h2>
+              <p class="text-gray-300">The dashboard provides a clean UI for managing scripts, keys, and bot
+                configurations. Track usage, view analytics, and customize bot settings easily.</p>
+            </div>
+            <div class="mb-6">
+              <h2 class="text-2xl font-semibold mb-2 text-indigo-300">About the Bot</h2>
+              <p class="text-gray-300">Integrate Luasec bot features with your Lua environment. Automate script
+                distribution, manage keys, and connect with external services securely.</p>
+            </div>
+          </section>
+          <!-- Get Started tab: all subtabs stacked -->
+          <section id="mobile-get-started-content" class="hidden">
+            <div class="mb-6">
+              <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Dashboard Setup</h2>
+              <ol class="list-decimal pl-5 text-gray-300">
+                <li>Register your account</li>
+                <li>Configure your project settings</li>
+                <li>Connect your bot</li>
+                <li>Manage keys and scripts</li>
+              </ol>
+            </div>
+            <div class="mb-6">
+              <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Using the Bot</h2>
+              <p class="text-gray-300">Install and configure your bot using our step-by-step guides. Enable advanced
+                features and automate tasks for your Lua projects.</p>
+            </div>
+          </section>
+          <!-- Integrations tab: all subtabs stacked -->
+          <section id="mobile-integrations-content" class="hidden">
+            <div class="mb-6">
+              <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Global Variables</h2>
+              <p class="text-gray-300">Integrate and manage global variables for scripts and bots. Refer to our API for
+                supported global parameters and usage guidelines.</p>
+            </div>
+          </section>
+          <!-- API Reference tab: all subtabs stacked -->
+          <section id="mobile-api-reference-content" class="hidden">
+            <div class="mb-6">
+              <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Get Script Loader</h2>
+              <pre
+                class="bg-gray-900 rounded p-4 text-sm text-gray-200 border border-gray-800">GET /api/script-loader?key=YOUR_KEY</pre>
+              <p class="text-gray-300">Returns the script loader for your bot. Requires a valid key. Response includes
+                loader code and usage info.</p>
+            </div>
+            <div class="mb-6">
+              <h2 class="text-2xl font-semibold mb-2 text-indigo-300">Get Key Info</h2>
+              <pre
+                class="bg-gray-900 rounded p-4 text-sm text-gray-200 border border-gray-800">GET /api/key-info?key=YOUR_KEY</pre>
+              <p class="text-gray-300">Fetches key status, expiry, and usage metadata. Useful for managing bot access
+                and permissions.</p>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+    <script>
+      const tabs = document.querySelectorAll('.tab-btn');
+      const subtabs = document.querySelectorAll('.subtabs');
+      const subtabBtns = document.querySelectorAll('.subtab-btn');
+      const contentPanes = document.querySelectorAll('.content-pane');
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const sidebarDrawer = document.getElementById('sidebar-drawer');
+      const sidebarBackdrop = document.getElementById('sidebar-backdrop');
+      const closeSidebarBtn = document.getElementById('close-sidebar');
+      const mobileTabs = document.getElementById('mobile-tabs');
+      const drawerSubtabs = sidebarDrawer.querySelectorAll('.subtabs');
+      const drawerSubtabBtns = sidebarDrawer.querySelectorAll('.subtab-btn');
       // Mobile subtabs removed
-      drawerSubtabs.forEach(st => st.classList.add('hidden'));
-      const drawerSubtab = document.getElementById('drawer-subtabs-' + tabName);
-      if (drawerSubtab) drawerSubtab.classList.remove('hidden');
-      const firstDrawerSubtab = drawerSubtab?.querySelector('.subtab-btn');
-      if (firstDrawerSubtab) {
-        drawerSubtab.querySelectorAll('.subtab-btn').forEach(b => b.classList.remove('active', 'text-indigo-400', 'font-medium', 'bg-gray-700'));
-        firstDrawerSubtab.classList.add('active', 'text-indigo-400', 'font-medium', 'bg-gray-700');
-      }
-      // Automatically switch to first subtab for this main tab (desktop only)
-      if (window.innerWidth >= 768) {
-        // Map main tab to first subtab
-        const firstSubtabMap = {
-          'overview': 'welcome',
-          'get-started': 'dashboard-setup',
-          'integrations': 'global-vars',
-          'api-reference': 'script-loader'
-        };
-        if (firstSubtabMap[tabName]) {
-          showSubtab(firstSubtabMap[tabName]);
+      const drawerMainTabs = document.getElementById('drawer-main-tabs');
+      const drawerTabBtns = drawerMainTabs ? drawerMainTabs.querySelectorAll('.tab-btn') : [];
+      function showTab(tabName) {
+        subtabs.forEach(st => st.classList.add('hidden'));
+        tabs.forEach(t => t.classList.remove('active', 'text-indigo-400', 'font-semibold', 'bg-gray-700'));
+        const desktopSubtabs = document.getElementById('subtabs-' + tabName);
+        if (desktopSubtabs) desktopSubtabs.classList.remove('hidden');
+        const tabBtn = document.querySelector('.tab-btn[data-tab="' + tabName + '"]');
+        if (tabBtn) tabBtn.classList.add('active', 'text-indigo-400', 'font-semibold', 'bg-gray-700');
+        drawerTabBtns.forEach(t => t.classList.remove('active', 'text-indigo-400', 'font-semibold', 'bg-gray-700'));
+        const drawerTabBtn = drawerMainTabs?.querySelector('.tab-btn[data-tab="' + tabName + '"]');
+        if (drawerTabBtn) drawerTabBtn.classList.add('active', 'text-indigo-400', 'font-semibold', 'bg-gray-700');
+        // Mobile subtabs removed
+        drawerSubtabs.forEach(st => st.classList.add('hidden'));
+        const drawerSubtab = document.getElementById('drawer-subtabs-' + tabName);
+        if (drawerSubtab) drawerSubtab.classList.remove('hidden');
+        const firstDrawerSubtab = drawerSubtab?.querySelector('.subtab-btn');
+        if (firstDrawerSubtab) {
+          drawerSubtab.querySelectorAll('.subtab-btn').forEach(b => b.classList.remove('active', 'text-indigo-400', 'font-medium', 'bg-gray-700'));
+          firstDrawerSubtab.classList.add('active', 'text-indigo-400', 'font-medium', 'bg-gray-700');
+        }
+        // Automatically switch to first subtab for this main tab (desktop only)
+        if (window.innerWidth >= 768) {
+          // Map main tab to first subtab
+          const firstSubtabMap = {
+            'overview': 'welcome',
+            'get-started': 'dashboard-setup',
+            'integrations': 'global-vars',
+            'api-reference': 'script-loader'
+          };
+          if (firstSubtabMap[tabName]) {
+            showSubtab(firstSubtabMap[tabName]);
+          }
         }
       }
-    }
-    function showSubtab(subtabName) {
-      contentPanes.forEach(cp => cp.classList.add('hidden'));
-      document.getElementById('content-' + subtabName).classList.remove('hidden');
-      subtabBtns.forEach(b => b.classList.remove('active', 'text-indigo-400', 'font-medium', 'bg-gray-700'));
-      drawerSubtabBtns.forEach(b => b.classList.remove('active', 'text-indigo-400', 'font-medium', 'bg-gray-700'));
-      document.querySelectorAll('.subtab-btn[data-subtab="' + subtabName + '"]').forEach(b => b.classList.add('active', 'text-indigo-400', 'font-medium', 'bg-gray-700'));
-    }
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        showTab(tab.dataset.tab);
-      });
-    });
-    subtabBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        showSubtab(btn.dataset.subtab);
-      });
-    });
-    drawerTabBtns.forEach(tab => {
-      tab.addEventListener('click', () => {
-        showTab(tab.dataset.tab);
-        drawerTabBtns.forEach(t => t.classList.remove('active', 'text-indigo-400', 'font-semibold', 'bg-gray-700'));
-        tab.classList.add('active', 'text-indigo-400', 'font-semibold', 'bg-gray-700');
-      });
-    });
-    // Mobile subtabs removed
-    mobileMenuBtn?.addEventListener('click', () => {
-      sidebarDrawer.classList.add('open');
-      sidebarBackdrop.classList.remove('hidden');
-    });
-    closeSidebarBtn?.addEventListener('click', () => {
-      sidebarDrawer.classList.remove('open');
-      sidebarBackdrop.classList.add('hidden');
-    });
-    sidebarBackdrop?.addEventListener('click', () => {
-      sidebarDrawer.classList.remove('open');
-      sidebarBackdrop.classList.add('hidden');
-    });
-    drawerSubtabBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        showSubtab(btn.dataset.subtab);
+      function showSubtab(subtabName) {
+        contentPanes.forEach(cp => cp.classList.add('hidden'));
+        document.getElementById('content-' + subtabName).classList.remove('hidden');
+        subtabBtns.forEach(b => b.classList.remove('active', 'text-indigo-400', 'font-medium', 'bg-gray-700'));
         drawerSubtabBtns.forEach(b => b.classList.remove('active', 'text-indigo-400', 'font-medium', 'bg-gray-700'));
-        btn.classList.add('active', 'text-indigo-400', 'font-medium', 'bg-gray-700');
+        document.querySelectorAll('.subtab-btn[data-subtab="' + subtabName + '"]').forEach(b => b.classList.add('active', 'text-indigo-400', 'font-medium', 'bg-gray-700'));
+      }
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          showTab(tab.dataset.tab);
+        });
+      });
+      subtabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          showSubtab(btn.dataset.subtab);
+        });
+      });
+      drawerTabBtns.forEach(tab => {
+        tab.addEventListener('click', () => {
+          showTab(tab.dataset.tab);
+          drawerTabBtns.forEach(t => t.classList.remove('active', 'text-indigo-400', 'font-semibold', 'bg-gray-700'));
+          tab.classList.add('active', 'text-indigo-400', 'font-semibold', 'bg-gray-700');
+        });
+      });
+      // Mobile subtabs removed
+      mobileMenuBtn?.addEventListener('click', () => {
+        sidebarDrawer.classList.add('open');
+        sidebarBackdrop.classList.remove('hidden');
+      });
+      closeSidebarBtn?.addEventListener('click', () => {
         sidebarDrawer.classList.remove('open');
         sidebarBackdrop.classList.add('hidden');
       });
-    });
-    showTab('overview');
+      sidebarBackdrop?.addEventListener('click', () => {
+        sidebarDrawer.classList.remove('open');
+        sidebarBackdrop.classList.add('hidden');
+      });
+      drawerSubtabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          showSubtab(btn.dataset.subtab);
+          drawerSubtabBtns.forEach(b => b.classList.remove('active', 'text-indigo-400', 'font-medium', 'bg-gray-700'));
+          btn.classList.add('active', 'text-indigo-400', 'font-medium', 'bg-gray-700');
+          sidebarDrawer.classList.remove('open');
+          sidebarBackdrop.classList.add('hidden');
+        });
+      });
+      showTab('overview');
 
-    // Mobile: show stacked content for selected main tab only
-    function showMobileTab(tabName) {
-      const mobileSections = [
-        'overview',
-        'get-started',
-        'integrations',
-        'api-reference'
-      ];
-      mobileSections.forEach(name => {
-        const el = document.getElementById('mobile-' + name + '-content');
-        if (el) el.classList.add('hidden');
+      // Mobile: show stacked content for selected main tab only
+      function showMobileTab(tabName) {
+        const mobileSections = [
+          'overview',
+          'get-started',
+          'integrations',
+          'api-reference'
+        ];
+        mobileSections.forEach(name => {
+          const el = document.getElementById('mobile-' + name + '-content');
+          if (el) el.classList.add('hidden');
+        });
+        const activeEl = document.getElementById('mobile-' + tabName + '-content');
+        if (activeEl) activeEl.classList.remove('hidden');
+      }
+      // On mobile, also switch stacked content when main tab is selected
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          if (window.innerWidth < 768) {
+            showMobileTab(tab.dataset.tab);
+          }
+        });
       });
-      const activeEl = document.getElementById('mobile-' + tabName + '-content');
-      if (activeEl) activeEl.classList.remove('hidden');
-    }
-    // On mobile, also switch stacked content when main tab is selected
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        if (window.innerWidth < 768) {
-          showMobileTab(tab.dataset.tab);
-        }
+      drawerTabBtns.forEach(tab => {
+        tab.addEventListener('click', () => {
+          if (window.innerWidth < 768) {
+            showMobileTab(tab.dataset.tab);
+          }
+        });
       });
-    });
-    drawerTabBtns.forEach(tab => {
-      tab.addEventListener('click', () => {
-        if (window.innerWidth < 768) {
-          showMobileTab(tab.dataset.tab);
-        }
-      });
-    });
-    // Show overview by default on mobile
-    if (window.innerWidth < 768) {
-      showMobileTab('overview');
-    }
-  </script>
-</div>
+      // Show overview by default on mobile
+      if (window.innerWidth < 768) {
+        showMobileTab('overview');
+      }
+    </script>
+  </div>
 </body>
+
 </html>
