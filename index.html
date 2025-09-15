@@ -225,26 +225,28 @@
   </style>
 </head>
 <body class="bg-[#18181b] text-gray-100 min-h-screen flex flex-col transition-colors duration-300">
-  <header class="flex items-center justify-between px-6 py-3 border-b border-gray-800">
-    <div class="flex items-center gap-2">
+  <header class="flex flex-col px-6 py-3 border-b border-gray-800">
+    <div class="mb-1">
       <span class="font-bold text-2xl tracking-tight text-violet-300">Luasec Docs</span>
     </div>
-    <nav id="main-tabs" class="hidden md:flex gap-2 border-b-0">
-      <button class="tab-btn active text-indigo-400 font-semibold px-4 py-2 rounded-t transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none" data-tab="overview">Overview</button>
-      <button class="tab-btn text-gray-300 font-medium px-4 py-2 rounded-t transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none" data-tab="get-started">Get Started</button>
-      <button class="tab-btn text-gray-300 font-medium px-4 py-2 rounded-t transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none" data-tab="integrations">Integrations</button>
-      <button class="tab-btn text-gray-300 font-medium px-4 py-2 rounded-t transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none" data-tab="api-reference">API Reference</button>
-    </nav>
-    <div class="flex-1"></div>
-    <nav class="hidden md:flex items-center gap-4">
-      <a href="#" class="text-sm text-gray-400 hover:text-violet-400 font-medium transition-colors">GitHub</a>
-      <a href="#" class="text-sm text-gray-400 hover:text-violet-400 font-medium transition-colors">Support</a>
-    </nav>
-    <button id="mobile-menu-btn" class="md:hidden ml-auto text-indigo-400 p-2 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500" aria-label="Open menu">
-      <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
-      </svg>
-    </button>
+    <div class="flex items-center w-full">
+      <nav id="main-tabs" class="hidden md:flex gap-2 border-b-0 mr-6">
+        <button class="tab-btn active text-indigo-400 font-semibold px-4 py-2 rounded-t transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none" data-tab="overview">Overview</button>
+        <button class="tab-btn text-gray-300 font-medium px-4 py-2 rounded-t transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none" data-tab="get-started">Get Started</button>
+        <button class="tab-btn text-gray-300 font-medium px-4 py-2 rounded-t transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none" data-tab="integrations">Integrations</button>
+        <button class="tab-btn text-gray-300 font-medium px-4 py-2 rounded-t transition-colors duration-150 bg-gray-800 hover:bg-gray-700 focus:outline-none" data-tab="api-reference">API Reference</button>
+      </nav>
+      <div class="flex-1"></div>
+      <nav class="hidden md:flex items-center gap-4">
+        <a href="#" class="text-sm text-gray-400 hover:text-violet-400 font-medium transition-colors">GitHub</a>
+        <a href="#" class="text-sm text-gray-400 hover:text-violet-400 font-medium transition-colors">Support</a>
+      </nav>
+      <button id="mobile-menu-btn" class="md:hidden ml-auto text-indigo-400 p-2 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500" aria-label="Open menu">
+        <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
   </header>
   <div class="flex flex-1 overflow-hidden flex-col md:flex-row relative">
     <aside class="hidden md:flex flex-col min-w-[240px] border-r border-gray-800 pt-8">
@@ -312,7 +314,6 @@
     </div>
     <main class="flex-1 overflow-y-auto relative">
       <div id="content-welcome" class="content-pane">
-        <h1>Welcome to luasec</h1>
         <p class="mb-2 text-gray-300 text-lg">Luasec is a modern, secure backend and dashboard solution for Lua-based bots and scripts. This documentation will guide you through setup, usage, integrations, and API reference.</p>
         <ul class="pl-4 list-disc text-gray-400 text-base">
           <li>Explore the backend architecture</li>
@@ -439,7 +440,13 @@
     });
     mobileSubtabBtns.forEach(btn => {
       btn.addEventListener('click', () => {
+        // Hide all mobile subtabs containers
+        mobileSubtabs.forEach(st => st.classList.add('hidden'));
+        // Show only the parent subtabs container of the clicked button
+        const parentSubtabs = btn.closest('.subtabs');
+        if (parentSubtabs) parentSubtabs.classList.remove('hidden');
         showSubtab(btn.dataset.subtab);
+        // Remove active from all, add to clicked
         mobileSubtabBtns.forEach(b => b.classList.remove('active', 'text-indigo-400', 'font-medium', 'bg-gray-700'));
         btn.classList.add('active', 'text-indigo-400', 'font-medium', 'bg-gray-700');
       });
