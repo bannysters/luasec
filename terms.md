@@ -122,5 +122,3 @@ To the fullest extent permitted by law, LuaSec shall not be liable for indirect,
 For support, DMCA notices, or legal inquiries:  
 📧 Email: support@luasec.net  
 💬 Discord: [https://luasec.net/discord](https://luasec.net/discord)
-
-This version keeps your platform neutral, adds legal insulation, and subtly distances LuaSec from exploit-related use without alienating your user base. Want help drafting a matching Privacy Policy next
