@@ -110,4 +110,4 @@ We may update this Privacy Policy from time to time. Changes will be posted at [
 
 For privacy questions or data requests, contact:  
 📧 Email: [support@luasec.net](mailto:support@luasec.net)  
-💬 Discord: [https://discord.gg/6bRT5RSv6h](https://discord.gg/6bRT5RSv6h)
+💬 Discord: [https://luasec.net/discord](https://luasec.net/discord)
